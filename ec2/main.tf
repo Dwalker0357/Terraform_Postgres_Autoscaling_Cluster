@@ -6,7 +6,7 @@ exec > >(tee /var/log/user-data.log|logger -t user-data ) 2>&1
 yum -y update
 yum install -y nfs-utils unzip curl jq
 mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${aws_efs_file_system.dale-terraform-test-efs-volume.dns_name}:/  /path/to/mount/location
-echo ${aws_efs_file_system.dale-terraform-test-efs-volume.dns_name}:/ /efs/postgres nfs4 nofail,defaults,_netdev 0 0 >> /etc/fstab
+echo ${aws_efs_file_system.dale-terraform-test-efs-volume.dns_name}:/ /path/to/mount/location nfs4 nofail,defaults,_netdev 0 0 >> /etc/fstab
 USERDATA
 }
 
